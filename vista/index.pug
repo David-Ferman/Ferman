@@ -1,0 +1,110 @@
+extends layout
+block contenido
+   .bg-amarillo.contenedor.sombra
+      
+      
+      p.arriba#arriba #{error}
+      form.caja-login(method="POST" action="/registro")
+         <legend>Añada un contacto <span>Todos los campos son obligatorios</span> </legend>
+         .campos
+            .campo
+               label Nombre:
+               input(type="text" name="nombre" placeholder="Tu Nombre" )
+            .campo
+               label Apellidos:
+               input(type="text" name="apellido" placeholder="Tu Apellido" )
+            .campo
+               label E-mail:
+               input(type="text" name="email" placeholder="Tu Email" )
+            .campo
+               label Password:
+               input(type="text" name="password" placeholder="Tu Password" )
+            .campo
+               label Puesto:
+               select(name="puesto")
+                  option(value="Administrador") Administrador
+                  option(value="operador") Operador
+         .campo
+            input.boton(type="submit" value="Registrar")
+
+
+
+
+
+   .bg-blanco.contenedor.sombra.contactos
+     .contenedor-contactos
+          h2 Busqueda
+          form.espacio.caja-login(method="POST" action="/busqueda")
+             input#buscar.buscador.sombra(type="text" name="busqueda" placeholder="Buscar Datos por Nick")
+             input.boton(type="submit" value="Buscar")
+          .contenedor-tabla
+               table.listado-contactos
+                    thead
+                         tr
+                              th Nombre
+                              th Apellido
+                              th Email
+                              th Contraseña
+                              th Puesto
+                              th Editar
+                              th Eliminar
+                    tbody#cuepado
+                         if(Busqueda)
+                                 tr
+                                    td 
+                                       p.ver #{Busqueda.nombre} 
+                                       input.no(type="text" name="apellido"  )
+                                    td 
+                                       p.ver #{Busqueda.apellido}
+                                       input.no(type="text" name="apellido"  )
+                                    td 
+                                       p.ver #{Busqueda.email}
+                                       input.no(type="text" name="apellido"  )
+                                    td 
+                                       p.ver #{Busqueda.password}
+                                       input.no(type="text" name="apellido"  )
+                                    td 
+                                       p.ver #{Busqueda.puesto}
+                                       input.no(type="text" name="puesto"  )
+                                    td 
+                                       a#edita.ver.edita(href="#") Editar
+                                       a#guarda.no(href="#" data-id=Busqueda.nick) Guardar
+                                    td
+                                       a.elimina(href="#" data-id=Busqueda.nick) Eliminar
+          h2 Contactos
+          .contenedor-tabla
+               table.listado-contactos
+                    thead
+                         tr
+                              th Nombre
+                              th Apellido
+                              th Email
+                              th Contraseña
+                              th Puesto
+                              th Editar
+                              th Eliminar
+                    tbody#cuepado
+                        if(proyectoLista.length)
+                              each proyecto in proyectoLista
+                                 tr
+                                    td 
+                                       p.ver #{proyecto.nombre} 
+                                       input.no(type="text" name="apellido"  )
+                                    td 
+                                       p.ver #{proyecto.apellido}
+                                       input.no(type="text" name="apellido"  )
+                                    td 
+                                       p.ver #{proyecto.email}
+                                       input.no(type="text" name="apellido"  )
+                                    td 
+                                       p.ver #{proyecto.password}
+                                       input.no(type="text" name="apellido"  )
+                                    td 
+                                       p.ver #{proyecto.puesto}
+                                       input.no(type="text" name="puesto"  )
+                                    td 
+                                       a#edita.ver.edita(href="#") Editar
+                                       a#guarda.no(href="#" data-id=proyecto.nick) Guardar
+                                    td
+                                       a.elimina(href="#" data-id=proyecto.nick) Eliminar
+   
